@@ -17,8 +17,28 @@ exports.handler = function( event, context ) {
             if (event.request.intent.slots.recipe.value) {
 
                 myRecipe = event.request.intent.slots.recipe.value;
+
                 say = "Damn right you have a recipe for " + myRecipe;
 
+
+                if (event.request.intent.slots.recpie.value) {
+                    currentRecipe = event.request.intent.slots.recpie.value;
+
+                    var post_data = {"recipe" : currentRecipe};
+                    // say = currentRecipe;
+
+                }
+                console.log("GetRecipeIntent");
+
+            } else if (IntentName === "GetIngredientIntent") {
+                // TODO
+                console.log("GetIngredientIntent");
+            } else if (IntentName === "GetIngredientAmmountIntent") {
+                // TODO
+                console.log("GetIngredientAmmountIntent");
+            }else if (IntentName === "GetListOfRecipesIntent") {
+                // TODO
+                console.log("GetListOfRecipesIntent");
             }
 
         } else if (IntentName === "AMAZON.StopIntent" || IntentName === "AMAZON.CancelIntent") {
@@ -55,7 +75,10 @@ function buildSpeechletResponse(say, shouldEndSession) {
         shouldEndSession: shouldEndSession
     };
 }
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> d4271bef7e9c5d30b2141572e18c8bbc5638249a
