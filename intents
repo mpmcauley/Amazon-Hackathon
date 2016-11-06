@@ -1,0 +1,3 @@
+GetRecipeIntent get my {recipe} recipe
+GetRecipeIntent what is my {recipe} recipe
+GetIngredientIntent what is the {nth} ingredient in my {recipe}
