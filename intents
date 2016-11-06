@@ -1,6 +1,11 @@
 GetRecipeIntent get my {recipe} recipe
 GetRecipeIntent what is my {recipe} recipe
+
+CheckRecipeIntent do I have a recipe for {recipe}
+
 GetIngredientIntent what is the {nth} ingredient in my {recipe}
+
 GetIngredientAmountIntent how much {ingredient} do I need
 GetIngredientAmountIntent how many {ingredient} do I need
+
 GetListOfRecipesIntent what are my recipes

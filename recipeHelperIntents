@@ -1,7 +1,7 @@
 {
   "intents": [
     {
-      "intent": "GetRecipeRequestIntent",
+      "intent": "GetRecipeIntent",
       "slots":[
           {
             "name" : "recipe",
@@ -9,6 +9,24 @@
           }
       ]
     },
+    {
+        "intent": "CheckRecipeIntent",
+        "slots":[
+            {
+              "name" : "recipe",
+              "type" : "LIST_OF_RECIPES"
+            }
+        ]
+    },
+    {
+        "intent": "GetIngredientIntent"
+    }
+    {
+        "intent": "GetIngredientAmmountIntent"
+    }
+    {
+        "intent": "GetListOfRecipesIntent"
+    }
     {
       "intent": "AMAZON.StartOverIntent"
     },
