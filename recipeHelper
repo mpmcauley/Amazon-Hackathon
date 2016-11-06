@@ -4,6 +4,27 @@
 
 var https = require('https');
 
+var recipes = {
+    cookies: {
+        ingredients: {
+            milk: "one cup of",
+            butter: "all of the",
+            eggs: "one"
+        }
+    },
+    secretSauce: {
+        ingredients: {
+            butter: "two tablespoons of",
+            brownSugar: "two tablespoons of",
+            garlicCloves: "two",
+            lemonJuice: "one tablespoon of",
+            soySauce: "two teaspoons of",
+            pepper: "one half teaspoon",
+            mincedGinger: "one half teaspoon"
+        }
+    }
+}
+
 exports.handler = function( event, context ) {
     var say = "";
     var shouldEndSession = false;
