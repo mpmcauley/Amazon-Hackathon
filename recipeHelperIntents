@@ -2,14 +2,34 @@
 {
   "intents": [
     {
-      "intent": "StateRequestIntent",
+      "intent": "GetRecipeIntent",
       "slots":[
-        {
-          "name":"usstate",
-          "type":"AMAZON.US_STATE"
-        }
+          {
+              "recipe" : "recipe",
+          }
       ]
     },
+    {
+        "intent": "GetIngredientIntent",
+        "slots":[
+            {
+                "recipe": "recipe",
+                "ingredient": "ingredient"
+            }
+        ]
+    },
+    {
+        "intent": "GetIngredientAmmountIntent",
+        "slots":[
+            {
+                "recipe": "recipe",
+                "ingredient": "ingredient"
+            }
+        ]
+    },
+    {
+        "intent":
+    }
     {
       "intent": "AMAZON.StartOverIntent"
     },
@@ -34,3 +54,9 @@
 
   ]
 }
+
+get recipe
+get ingredient from recipe
+get amount of ingredient
+get list of recipes
+get list of ingredients in recipe
