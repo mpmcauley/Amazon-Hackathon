@@ -32,6 +32,15 @@ exports.handler = function( event, context ) {
                             // This line concludes the lambda call.  Move this line to within any asynchronous callbacks that return and use data.
                             context.succeed({sessionAttributes: sessionAttributes, response: buildSpeechletResponse(say, shouldEndSession) });
 
+            } else if (IntentName === "GetIngredientIntent") {
+                // TODO
+                console.log("GetIngredientIntent");
+            } else if (IntentName === "GetIngredientAmmountIntent") {
+                // TODO
+                console.log("GetIngredientAmmountIntent");
+            }else if (IntentName === "GetListOfRecipesIntent") {
+                // TODO
+                console.log("GetListOfRecipesIntent");
             }
 
         } else if (IntentName === "AMAZON.StopIntent" || IntentName === "AMAZON.CancelIntent") {
