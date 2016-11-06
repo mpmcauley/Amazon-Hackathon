@@ -1,11 +1,11 @@
+
 {
   "intents": [
     {
       "intent": "GetRecipeIntent",
       "slots":[
           {
-            "name" : "recipe",
-            "type" : "LIST_OF_RECIPES"
+              "name" : "recipe",
           }
       ]
     },
@@ -13,19 +13,35 @@
         "intent": "CheckRecipeIntent",
         "slots":[
             {
-              "name" : "recipe",
-              "type" : "LIST_OF_RECIPES"
+                "name" : "recipe",
+            }
+        ]
+    }
+    {
+        "intent": "GetIngredientIntent",
+        "slots":[
+            {
+                "name": "recipe",
+                "ingredient": "ingredient"
             }
         ]
     },
     {
-        "intent": "GetIngredientIntent"
-    }
+        "intent": "GetIngredientAmmountIntent",
+        "slots":[
+            {
+                "name": "recipe",
+                "ingredient": "ingredient"
+            }
+        ]
+    },
     {
-        "intent": "GetIngredientAmmountIntent"
-    }
-    {
-        "intent": "GetListOfRecipesIntent"
+        "intent": "GetListOfRecipesIntent",
+        "slots":[
+            {
+                "name": "recipe"
+            }
+        ]
     }
     {
       "intent": "AMAZON.StartOverIntent"
@@ -51,9 +67,3 @@
 
   ]
 }
-
-get recipe
-get ingredient from recipe
-get amount of ingredient
-get list of recipes
-get list of ingredients in recipe
