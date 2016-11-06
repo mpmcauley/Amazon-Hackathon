@@ -4,6 +4,8 @@ exports.handler = function( event, context ) {
     var shouldEndSession = false;
     var sessionAttributes = {};
     var myRecipe = "";
+    var recipeName = "";
+
 
     if (event.request.type === "LaunchRequest") {
         say = "Welcome to Recipe builder...lets get going big fella";
@@ -12,11 +14,14 @@ exports.handler = function( event, context ) {
     } else {
         var IntentName = event.request.intent.name;
 
-        if (IntentName === "GetRecipeRequestIntent") {
+        if (IntentName === "CheckRecipeIntent") {
 
             if (event.request.intent.slots.recipe.value) {
 
                 myRecipe = event.request.intent.slots.recipe.value;
+
+                recipeName = myRecipe.replace(/\s/g, '');
+
 
                 say = "Damn right you have a recipe for " + myRecipe;
 
@@ -28,7 +33,7 @@ exports.handler = function( event, context ) {
                     // say = currentRecipe;
 
                 }
-                console.log("GetRecipeIntent");
+                console.log("CheckRecipeIntent");
 
             } else if (IntentName === "GetIngredientIntent") {
                 // TODO
