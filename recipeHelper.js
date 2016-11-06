@@ -22,15 +22,14 @@ exports.handler = function( event, context ) {
                 myRecipe = event.request.intent.slots.recipe.value;
                 say = "this recipe is " + myRecipe;
 
+                if (event.request.intent.slots.recpie.value) {
+                    currentRecipe = event.request.intent.slots.recpie.value;
 
-                            add the state to a session.attributes array
-                            if (!sessionAttributes.requestList) {
-                                sessionAttributes.requestList = [];
-                            }
-                             sessionAttributes.requestList.push(myRecipe);
+                    var post_data = {"recipe" : currentRecipe};
+                    // say = currentRecipe;
 
-                            // This line concludes the lambda call.  Move this line to within any asynchronous callbacks that return and use data.
-                            context.succeed({sessionAttributes: sessionAttributes, response: buildSpeechletResponse(say, shouldEndSession) });
+                }
+                console.log("GetRecipeIntent");
 
             } else if (IntentName === "GetIngredientIntent") {
                 // TODO
