@@ -28,7 +28,12 @@
         ]
     },
     {
-        "intent":
+        "intent": "GetListOfRecipesIntent",
+        "slots":[
+            {
+                "recipe": "recipe"
+            }
+        ]
     }
     {
       "intent": "AMAZON.StartOverIntent"
