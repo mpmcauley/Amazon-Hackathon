@@ -1,12 +1,9 @@
+
 exports.handler = function( event, context ) {
     var say = "";
     var shouldEndSession = false;
     var sessionAttributes = {};
     var myRecipe = "";
-
-    if (event.session.attributes) {
-        sessionAttributes = event.session.attributes;
-    }
 
     if (event.request.type === "LaunchRequest") {
         say = "Welcome to Recipe builder...lets get going big fella";
@@ -15,33 +12,23 @@ exports.handler = function( event, context ) {
     } else {
         var IntentName = event.request.intent.name;
 
-        if (IntentName === "GetRecipeIntent") {
+        if (IntentName === "GetRecipeRequestIntent") {
 
             if (event.request.intent.slots.recipe.value) {
 
                 myRecipe = event.request.intent.slots.recipe.value;
-                say = "this recipe is " + myRecipe;
-
-
-                            add the state to a session.attributes array
-                            if (!sessionAttributes.requestList) {
-                                sessionAttributes.requestList = [];
-                            }
-                             sessionAttributes.requestList.push(myRecipe);
-
-                            // This line concludes the lambda call.  Move this line to within any asynchronous callbacks that return and use data.
-                            context.succeed({sessionAttributes: sessionAttributes, response: buildSpeechletResponse(say, shouldEndSession) });
+                say = "Damn right you have a recipe for " + myRecipe;
 
             }
 
         } else if (IntentName === "AMAZON.StopIntent" || IntentName === "AMAZON.CancelIntent") {
-            say = "No idea if this intent works. But we will see if I talk";
+            say = "Happy cooking";
             shouldEndSession = true;
             context.succeed({sessionAttributes: sessionAttributes, response: buildSpeechletResponse(say, shouldEndSession) });
 
 
         } else if (IntentName === "AMAZON.HelpIntent" ) {
-            say = "Just say the name of a U.S. State, such as Massachusetts or California."
+            say = "Ask me if you have a recipe for something"
             context.succeed({sessionAttributes: sessionAttributes, response: buildSpeechletResponse(say, shouldEndSession) });
 
         }
@@ -68,3 +55,7 @@ function buildSpeechletResponse(say, shouldEndSession) {
         shouldEndSession: shouldEndSession
     };
 }
+
+
+
+
