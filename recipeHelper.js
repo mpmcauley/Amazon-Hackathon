@@ -12,16 +12,16 @@ var recipes = {
             eggs: "one"
         }
     },
-    secretSauce: {
-        ingredients: {
-            butter: "two tablespoons of",
-            brownSugar: "two tablespoons of",
-            garlicCloves: "two",
-            lemonJuice: "one tablespoon of",
-            soySauce: "two teaspoons of",
-            pepper: "one half teaspoon",
-            mincedGinger: "one half teaspoon"
-        }
+    secretsauce: {
+        ingredients: [
+            {name: "butter", ammount: "two tablespoons of"},
+            {name: "brownSugar", ammount: "two tablespoons of"},
+            {name: "Garlic Cloves", ammount: "two"},
+            {name: "Lemon Juice", ammount: "one tablespoon of"},
+            {name: "Soy Sauce", ammount: "two teaspoons of"},
+            {name: "pepper", ammount: "one half teaspoon"},
+            {name: "mincedGinger", ammount: "one half teaspoon"}
+        ]
     }
 }
 
@@ -63,6 +63,7 @@ exports.handler = function( event, context ) {
             console.log("GetIngredientIntent");
         } else if (IntentName === "GetIngredientAmmountIntent") {
             // TODO
+            currentIngredient = event.request.intent.slots.;
             console.log("GetIngredientAmmountIntent");
         }else if (IntentName === "GetListOfRecipesIntent") {
             // TODO
