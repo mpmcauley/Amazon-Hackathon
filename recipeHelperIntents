@@ -1,40 +1,14 @@
-
 {
   "intents": [
     {
-      "intent": "GetRecipeIntent",
+      "intent": "GetRecipeRequestIntent",
       "slots":[
           {
-              "recipe" : "recipe",
+            "name" : "recipe",
+            "type" : "LIST_OF_RECIPES"
           }
       ]
     },
-    {
-        "intent": "GetIngredientIntent",
-        "slots":[
-            {
-                "recipe": "recipe",
-                "ingredient": "ingredient"
-            }
-        ]
-    },
-    {
-        "intent": "GetIngredientAmmountIntent",
-        "slots":[
-            {
-                "recipe": "recipe",
-                "ingredient": "ingredient"
-            }
-        ]
-    },
-    {
-        "intent": "GetListOfRecipesIntent",
-        "slots":[
-            {
-                "recipe": "recipe"
-            }
-        ]
-    }
     {
       "intent": "AMAZON.StartOverIntent"
     },
