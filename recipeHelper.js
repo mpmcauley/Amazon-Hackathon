@@ -64,7 +64,7 @@ exports.handler = function( event, context ) {
     }
 
     if (event.request.type === "LaunchRequest") {
-        say = "Hi, what recipes do you want to know?";
+        say = "Hey good looking, what's cooking?";
         context.succeed({sessionAttributes: sessionAttributes, response:
             buildSpeechletResponse(say, shouldEndSession) });
 
@@ -72,11 +72,8 @@ exports.handler = function( event, context ) {
         var IntentName = event.request.intent.name;
 
         if (IntentName === "CheckRecipeIntent") {
-            // TODO
-            // do I have a recipe for {recipe}
             if (event.request.intent.slots.recipe.value ) {
                 myRecipe = event.request.intent.slots.recipe.value;
-                //recipeName = myRecipe.replace(/\s/g, '');
                 if (recipes[myRecipe.replace(/ /g, "")]) {
                     say = "Damn right you have a recipe for " + myRecipe;
                 } else {
@@ -104,7 +101,6 @@ exports.handler = function( event, context ) {
         } else if (IntentName === "GetIngredientAmountIntent") {
             var currentRecipe = event.request.intent.slots.recipe.value;
             var currentIngredient = event.request.intent.slots.ingredient.value;
-            // TODO
             if (event.request.intent.slots.recipe.value) {
                 console.log(currentRecipe);
                 console.log(currentIngredient);
@@ -119,7 +115,6 @@ exports.handler = function( event, context ) {
                 say = "You need " + ammount + " " + currentIngredient;
                 shouldEndSession = true;
             } else {
-                console.log("FUCK");
                 say = "Sorry, I can't find that ingredient";
             }
 
