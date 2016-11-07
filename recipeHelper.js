@@ -5,12 +5,34 @@
 var https = require('https');
 
 exports.handler = function( event, context ) {
+    var recipes = {
+        cookies: {
+            name: "cookies",
+            ingredients: [
+                {name: "milk", ammount: "one cup of"},
+                {name: "butter", ammount: "all of the"},
+                {name: "eggs", ammount: "one"}
+            ]
+        },
+        secretsauce: {
+            name: "secret sauce",
+            ingredients: [
+                {name: "butter", ammount: "two tablespoons of"},
+                {name: "brownSugar", ammount: "two tablespoons of"},
+                {name: "Garlic Cloves", ammount: "two"},
+                {name: "Lemon Juice", ammount: "one tablespoon of"},
+                {name: "Soy Sauce", ammount: "two teaspoons of"},
+                {name: "pepper", ammount: "one half teaspoon"},
+                {name: "mincedGinger", ammount: "one half teaspoon"}
+            ]
+        }
+    };
     var say = "";
     var shouldEndSession = false;
     var sessionAttributes = {};
-    var myState = "";
-    var pop = 0;
-    var rank = 0;
+    var myRecipe = "";
+    var recipeName = "";
+
     var currentRecipe = "";
     var currentIngredient = "";
 
@@ -42,8 +64,9 @@ exports.handler = function( event, context ) {
     }
 
     if (event.request.type === "LaunchRequest") {
-        say = "Hi, what would you like to make today?";
-        context.succeed({sessionAttributes: sessionAttributes, response: buildSpeechletResponse(say, shouldEndSession) });
+        say = "Hi, what recipes do you want to know?";
+        context.succeed({sessionAttributes: sessionAttributes, response:
+            buildSpeechletResponse(say, shouldEndSession) });
 
     } else {
         var IntentName = event.request.intent.name;
@@ -51,19 +74,31 @@ exports.handler = function( event, context ) {
         if (IntentName === "CheckRecipeIntent") {
             // TODO
             // do I have a recipe for {recipe}
-            if (event.request.intent.slots.recpie.value) {
-                currentRecipe = event.request.intent.slots.recpie.value;
-
-                var post_data = {"recipe" : currentRecipe};
-                say = currentRecipe;
-
-
+            if (event.request.intent.slots.recipe.value ) {
+                myRecipe = event.request.intent.slots.recipe.value;
+                //recipeName = myRecipe.replace(/\s/g, '');
+                if (recipes[myRecipe.replace(/ /g, "")]) {
+                    say = "Damn right you have a recipe for " + myRecipe;
+                } else {
+                    say = "Sorry, you have never told me this recipe.";
+                }
+                context.succeed({sessionAttributes: sessionAttributes, response: buildSpeechletResponse(say, shouldEndSession) });
+                console.log("CheckRecipeIntent");
             }
             console.log("GetRecipeIntent");
-            context.succeed({sessionAttributes: sessionAttributes, response: buildSpeechletResponse(say, shouldEndSession) });
         } else if (IntentName === "GetIngredientIntent") {
-            // TODO
-            console.log("GetIngredientIntent");
+            var result = "";
+            if (event.request.intent.slots.recipe.value) {
+                    myRecipe = event.request.intent.slots.recipe.value;
+                    recipeName = myRecipe.replace(/ /g, "");
+                    var ingredients = recipes[recipeName].ingredients;
+                    for (i = 0; i < ingredients.length; i++) {
+                        result = result + ", " + ingredients[i].name;
+                    }
+                say = "The ingredients for " + myRecipe + " are" + result;
+            } else {
+                say = "Sorry bro, you don't have his recipe.";
+            };
             context.succeed({sessionAttributes: sessionAttributes, response: buildSpeechletResponse(say, shouldEndSession) });
 
         } else if (IntentName === "GetIngredientAmountIntent") {
@@ -92,17 +127,23 @@ exports.handler = function( event, context ) {
             context.succeed({sessionAttributes: sessionAttributes, response: buildSpeechletResponse(say, shouldEndSession) });
 
         } else if (IntentName === "GetListOfRecipesIntent") {
-            // TODO
-            console.log("GetListOfRecipesIntent");
+            var result = "";
+            var recipeKeys = Object.keys(recipes);
+            for(i = 0; i < recipeKeys.length; i++) {
+                result = result + ", " + recipes[recipeKeys[i]].name;
+            }
+            say = "the recipes that you currently have are" + result;
             context.succeed({sessionAttributes: sessionAttributes, response: buildSpeechletResponse(say, shouldEndSession) });
+            console.log("GetListOfRecipesIntent");
+
         } else if (IntentName === "AMAZON.StopIntent" || IntentName === "AMAZON.CancelIntent") {
-            say = "You asked for " + sessionAttributes.requestList.toString() + ". Thanks for playing!";
+            say = "Happy Cooking!";
             shouldEndSession = true;
             context.succeed({sessionAttributes: sessionAttributes, response: buildSpeechletResponse(say, shouldEndSession) });
 
 
         } else if (IntentName === "AMAZON.HelpIntent" ) {
-            say = "Just say the name of a U.S. State, such as Massachusetts or California."
+            say = "Just ask me for a recipe."
             context.succeed({sessionAttributes: sessionAttributes, response: buildSpeechletResponse(say, shouldEndSession) });
 
         }

@@ -1,8 +1,7 @@
-
 {
   "intents": [
     {
-      "intent": "GetRecipeIntent",
+      "intent": "CheckRecipeIntent",
       "slots":[
           {
               "name" : "recipe",
@@ -11,7 +10,7 @@
       ]
     },
     {
-        "intent": "CheckRecipeIntent",
+        "intent": "GetRecipeIntent",
         "slots":[
             {
                 "name" : "recipe",
