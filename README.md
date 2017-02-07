@@ -1,1 +1,1 @@
-This is what we are going to do here:
+Code from the LMU Amazon Hackathon; creating an Amazon Alexa App
